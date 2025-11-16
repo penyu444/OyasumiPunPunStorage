@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oyasumi Punpun</title>
+
+<!-- PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: #111;
+    color: #eee;
+    min-height: 100vh;
+  }
+
+  header {
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: #1b1b1b;
+    color: #ff3b3b;
+    box-shadow: 0 2px 6px rgba(255,0,0,0.25);
+  }
+
+  /* Volume card */
+  .volume {
+    margin: 1rem;
+    background: #1b1b1b;
+    border-radius: 12px;
+    border: 1px solid #333;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .volume:hover {
+    background: #252525;
+    box-shadow: 0 0 12px rgba(255,0,0,0.3);
+    transform: translateY(-2px);
+  }
+
+  .volume-thumb {
+    width: 80px;
+    height: 110px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .volume-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ff3b3b;
+  }
+
+  /* PDF Reader */
+  #reader {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 100;
+    flex-direction: column;
+  }
+
+  #pdf-canvas {
+    width: 100%;
+    flex: 1;
+    background: #000;
+  }
+
+  #back-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 20;
+    padding: 8px 16px;
+    background: #ff3b3b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+  }
+
+  .nav-zone {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    z-index: 10;
+  }
+  #prev-zone { left: 0; }
+  #next-zone { right: 0; }
+
+  #page-info {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    background: rgba(255,0,0,0.5);
+    border-radius: 6px;
+  }
+</style>
+</head>
+
+<body>
+
+<header>Oyasumi Punpun</header>
+
+<!-- Volume 1 -->
+<div class="volume" onclick="openPDF('vol1 - oyasumipunpun.pdf')">
+  <img src="vol1cover.png" class="volume-thumb">
+  <span class="volume-title">Volume 1</span>
+</div>
+
+<!-- Volume 2 -->
+<div class="volume" onclick="openPDF('vol2 - oyasumipunpun.pdf')">
+  <img src="vol2cover.png" class="volume-thumb">
+  <span class="volume-title">Volume 2</span>
+</div>
+
+<!-- Volume 3 -->
+<div class="volume" onclick="openPDF('vol3 - oyasumipunpun.pdf')">
+  <img src="vol3cover.png" class="volume-thumb">
+  <span class="volume-title">Volume 3</span>
+</div>
+
+<!-- Volume 4 -->
+<div class="volume" onclick="openPDF('vol4 - oyasumipunpun.pdf')">
+  <img src="vol4cover.png" class="volume-thumb">
+  <span class="volume-title">Volume 4</span>
+</div>
+
+<!-- Volume 5 -->
+<div class="volume" onclick="openPDF('vol5 - oyasumipunpun.pdf')">
+  <img src="vol5cover.png" class="volume-thumb">
+  <span class="volume-title">Volume 5</span>
+</div>
+
+<!-- Volume 6 -->
+<div class="volume" onclick="openPDF('vol6 - oyasumipunpun.pdf')">
+  <img src="vol6cover.png" class="volume-thumb">
+  <span class="volume-title">Volume 6</span>
+</div>
+
+<!-- Volume 7 -->
+<div class="volume" onclick="openPDF('vol7 - oyasumipunpun.pdf')">
+  <img src="vol7cover.png" class="volume-thumb">
+  <span class="volume-title">Volume 7</span>
+</div>
+
+<!-- Volume 8 -->
+<div class="volume" onclick="openPDF('vol8 - oyasumipunpun.pdf')">
+  <img src="vol8cover.png" class="volume-thumb">
+  <span class="volume-title">Volume 8</span>
+</div>
+
+<!-- Volume 9 -->
+<div class="volume" onclick="openPDF('vol9 - oyasumipunpun.pdf')">
+  <img src="vol9cover.png" class="volume-thumb">
+  <span class="volume-title">Volume 9</span>
+</div>
+
+<!-- Volume 10 -->
+<div class="volume" onclick="openPDF('vol10 - oyasumipunpun.pdf')">
+  <img src="vol10cover.png" class="volume-thumb">
+  <span class="volume-title">Volume 10</span>
+</div>
+
+<!-- Volume 11 -->
+<div class="volume" onclick="openPDF('vol11 - oyasumipunpun.pdf')">
+  <img src="vol11cover.png" class="volume-thumb">
+  <span class="volume-title">Volume 11</span>
+</div>
+
+<!-- Volume 12 -->
+<div class="volume" onclick="openPDF('vol12 - oyasumipunpun.pdf')">
+  <img src="vol12cover.png" class="volume-thumb">
+  <span class="volume-title">Volume 12</span>
+</div>
+
+<!-- Volume 12 -->
+<div class="volume" onclick="openPDF('vol12.5 - oyasumipunpun.pdf')">
+  <img src="vol12cover.png" class="volume-thumb">
+  <span class="volume-title">Volume 12.5</span>
+</div>
+
+<!-- Volume 13 -->
+<div class="volume" onclick="openPDF('vol13 - oyasumipunpun.pdf')">
+  <img src="vol13cover.png" class="volume-thumb">
+  <span class="volume-title">Volume 13</span>
+</div>
+
+<!-- Volume 13.5 -->
+<div class="volume" onclick="openPDF('vol13.5 - oyasumipunpun.pdf')">
+  <img src="vol13cover.png" class="volume-thumb">
+  <span class="volume-title">Volume 13.5</span>
+</div>
+
+
+<!-- Add more volumes below -->
+
+<!-- PDF Viewer -->
+<div id="reader">
+  <button id="back-btn" onclick="closePDF()">Back</button>
+  <canvas id="pdf-canvas"></canvas>
+
+  <div id="prev-zone" class="nav-zone" onclick="prevPage()"></div>
+  <div id="next-zone" class="nav-zone" onclick="nextPage()"></div>
+
+  <div id="page-info"></div>
+</div>
+
+<script>
+let pdfDoc = null;
+let pageNum = 1;
+
+async function openPDF(pdfUrl) {
+  document.getElementById("reader").style.display = "flex";
+
+  const loadingTask = pdfjsLib.getDocument(pdfUrl);
+  pdfDoc = await loadingTask.promise;
+
+  pageNum = 1;
+  renderPage(pageNum);
+}
+
+async function renderPage(num) {
+  const page = await pdfDoc.getPage(num);
+  const viewport = page.getViewport({ scale: 1.6 });
+
+  const canvas = document.getElementById("pdf-canvas");
+  const ctx = canvas.getContext("2d");
+
+  canvas.height = viewport.height;
+  canvas.width = viewport.width;
+
+  await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+
+  document.getElementById("page-info").innerText =
+    `Page ${num} / ${pdfDoc.numPages}`;
+}
+
+function prevPage() {
+  if (pageNum <= 1) return;
+  pageNum--;
+  renderPage(pageNum);
+}
+
+function nextPage() {
+  if (pageNum >= pdfDoc.numPages) return;
+  pageNum++;
+  renderPage(pageNum);
+}
+
+function closePDF() {
+  document.getElementById("reader").style.display = "none";
+}
+</script>
+
+</body>
+</html>
